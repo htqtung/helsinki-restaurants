@@ -1,5 +1,5 @@
 // @flow
-import React from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
@@ -9,6 +9,8 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+
+import CustomizedDialog from "./CustomizedDialog.jsx";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -33,7 +35,18 @@ const useStyles = makeStyles(theme => ({
 
 const RestaurantList = (props: Object) => {
   const classes = useStyles();
+  const [open, setOpen] = useState(false);
+  const [restaurantInfo, setRestaurantInfo] = useState({});
   const restaurants = props.restaurants;
+
+  const handleClickOpen = info => {
+    setOpen(true);
+    setRestaurantInfo(info);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <React.Fragment>
       <Container className={classes.cardGrid} maxWidth="md">
@@ -52,18 +65,24 @@ const RestaurantList = (props: Object) => {
                   </Typography>
                   <Typography>{card.description}</Typography>
                 </CardContent>
-                {/* <CardActions>
-                  <Button size="small" color="primary">
+                <CardActions>
+                  <Button
+                    size="small"
+                    color="primary"
+                    onClick={() => handleClickOpen(card)}
+                  >
                     View
                   </Button>
-                  <Button size="small" color="primary">
-                    Edit
-                  </Button>
-                </CardActions> */}
+                </CardActions>
               </Card>
             </Grid>
           ))}
         </Grid>
+        <CustomizedDialog
+          open={open}
+          handleClose={handleClose}
+          restaurantInfo={restaurantInfo}
+        />
       </Container>
     </React.Fragment>
   );
