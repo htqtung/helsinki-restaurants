@@ -94,7 +94,7 @@ function App() {
                 color="textPrimary"
                 gutterBottom
               >
-                Album layout
+                Helsinki Restaurants
               </Typography>
               <Typography
                 variant="h5"
@@ -102,9 +102,8 @@ function App() {
                 color="textSecondary"
                 paragraph
               >
-                Something short and leading about the collection below—its
-                contents, the creator, etc. Make it short and sweet, but not too
-                short so folks don&apos;t simply skip over it entirely.
+                Fifty restaurants in Helsinki area shown on a React web page
+                with Material UI Design.
               </Typography>
               <div className={classes.heroButtons}>
                 <Grid container spacing={2} justify="center">
@@ -142,16 +141,13 @@ function App() {
         </main>
         {/* Footer */}
         <footer className={classes.footer}>
-          <Typography variant="h6" align="center" gutterBottom>
-            Footer
-          </Typography>
           <Typography
             variant="subtitle1"
             align="center"
             color="textSecondary"
             component="p"
           >
-            Something here to give the footer a purpose!
+            Have a nice day! :)
           </Typography>
           <Copyright />
         </footer>
