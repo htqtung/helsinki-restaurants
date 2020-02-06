@@ -8,7 +8,8 @@ import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import Grid from "@material-ui/core/Grid";
 import Toolbar from "@material-ui/core/Toolbar";
-import { makeStyles } from "@material-ui/core/styles";
+import { ThemeProvider } from "@material-ui/styles";
+import { makeStyles, createMuiTheme } from "@material-ui/core/styles";
 
 import data from "./db/restaurants.js";
 import RestaurantList from "./components/RestaurantList";
@@ -19,13 +20,19 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(2)
   },
   heroContent: {
-    backgroundColor: theme.palette.background.paper,
     padding: theme.spacing(8, 0, 6)
   },
   heroButtons: {
     marginTop: theme.spacing(4)
   }
 }));
+
+const darkTheme = createMuiTheme({
+  palette: {
+    primary: { main: "#0093d7" },
+    type: "dark"
+  }
+});
 
 function compareValues(key: string, order: "asc" | "desc" = "asc") {
   return function innerSort(a, b) {
@@ -68,86 +75,88 @@ function App() {
 
   return (
     <React.Fragment>
-      <CssBaseline />
-      <AppBar position="relative">
-        <Toolbar>
-          <Typography variant="h6" color="inherit" noWrap>
-            Wolt Summer Coding Challenge
+      <ThemeProvider theme={darkTheme}>
+        <CssBaseline />
+        <AppBar position="relative">
+          <Toolbar>
+            <Typography variant="h6" color="inherit" noWrap>
+              Wolt Summer 2020
+            </Typography>
+          </Toolbar>
+        </AppBar>
+        <main>
+          <div className={classes.heroContent}>
+            <Container maxWidth="sm">
+              <Typography
+                component="h1"
+                variant="h2"
+                align="center"
+                color="textPrimary"
+                gutterBottom
+              >
+                Album layout
+              </Typography>
+              <Typography
+                variant="h5"
+                align="center"
+                color="textSecondary"
+                paragraph
+              >
+                Something short and leading about the collection below—its
+                contents, the creator, etc. Make it short and sweet, but not too
+                short so folks don&apos;t simply skip over it entirely.
+              </Typography>
+              <div className={classes.heroButtons}>
+                <Grid container spacing={2} justify="center">
+                  <Grid item>
+                    <Button
+                      variant="contained"
+                      color="primary"
+                      onClick={() =>
+                        setRestaurantArray(
+                          restaurantArray.sort(compareValues("name"))
+                        )
+                      }
+                    >
+                      Sort A-Z
+                    </Button>
+                  </Grid>
+                  <Grid item>
+                    <Button
+                      variant="outlined"
+                      color="primary"
+                      onClick={() =>
+                        setRestaurantArray(
+                          restaurantArray.sort(compareValues("name", "desc"))
+                        )
+                      }
+                    >
+                      Sort Z-A
+                    </Button>
+                  </Grid>
+                </Grid>
+              </div>
+            </Container>
+          </div>
+          <RestaurantList restaurants={restaurantArray} />
+        </main>
+        {/* Footer */}
+        <footer className={classes.footer}>
+          <Typography variant="h6" align="center" gutterBottom>
+            Footer
           </Typography>
-        </Toolbar>
-      </AppBar>
-      <main>
-        <div className={classes.heroContent}>
-          <Container maxWidth="sm">
-            <Typography
-              component="h1"
-              variant="h2"
-              align="center"
-              color="textPrimary"
-              gutterBottom
-            >
-              Album layout
-            </Typography>
-            <Typography
-              variant="h5"
-              align="center"
-              color="textSecondary"
-              paragraph
-            >
-              Something short and leading about the collection below—its
-              contents, the creator, etc. Make it short and sweet, but not too
-              short so folks don&apos;t simply skip over it entirely.
-            </Typography>
-            <div className={classes.heroButtons}>
-              <Grid container spacing={2} justify="center">
-                <Grid item>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    onClick={() =>
-                      setRestaurantArray(
-                        restaurantArray.sort(compareValues("name"))
-                      )
-                    }
-                  >
-                    Sort A-Z
-                  </Button>
-                </Grid>
-                <Grid item>
-                  <Button
-                    variant="outlined"
-                    color="primary"
-                    onClick={() =>
-                      setRestaurantArray(
-                        restaurantArray.sort(compareValues("name", "desc"))
-                      )
-                    }
-                  >
-                    Sort Z-A
-                  </Button>
-                </Grid>
-              </Grid>
-            </div>
-          </Container>
-        </div>
-        <RestaurantList restaurants={restaurantArray} />
-      </main>
-      {/* Footer */}
-      <footer className={classes.footer}>
-        <Typography variant="h6" align="center" gutterBottom>
-          Footer
-        </Typography>
-        <Typography
-          variant="subtitle1"
-          align="center"
-          color="textSecondary"
-          component="p"
-        >
-          Something here to give the footer a purpose!
-        </Typography>
-        <Copyright />
-      </footer>
-      {/* End footer */}
+          <Typography
+            variant="subtitle1"
+            align="center"
+            color="textSecondary"
+            component="p"
+          >
+            Something here to give the footer a purpose!
+          </Typography>
+          <Copyright />
+        </footer>
+        {/* End footer */}
+      </ThemeProvider>
     </React.Fragment>
   );
 }
