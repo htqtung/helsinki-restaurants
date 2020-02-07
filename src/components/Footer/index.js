@@ -13,9 +13,12 @@ const Footer = () => {
         color="textSecondary"
         component="p"
       >
-        Have a nice day! :)
+        Have a nice day!{" "}
+        <span role="img" aria-label="love">
+          &#10084;&#65039;
+        </span>
       </Typography>
-      <Copyright />
+      <Copyright name="Tung Huynh" />
     </React.Fragment>
   );
 };
