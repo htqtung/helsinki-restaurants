@@ -21,5 +21,7 @@ it("renders normally", () => {
   act(() => {
     render(<Footer />, container);
   });
-  expect(container.querySelector("p").textContent).toBe("Have a nice day! :)");
+  expect(container.querySelector("p").textContent).toContain(
+    "Have a nice day!"
+  );
 });
