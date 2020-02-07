@@ -1,5 +1,5 @@
 // @flow
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
@@ -72,14 +72,16 @@ function App() {
   const [restaurantArray, setRestaurantArray] = useState(data.restaurants);
 
   // Because the changes in the restaurantArray does not trigger re-render,
-  // I have to add this line to manage the state changes and re-render the list
+  // I have to add this variable to manage the state changes and re-render the list
   const [reload, setReload] = useState("unsorted");
 
   const sortAsc = () => {
+    if (reload === "asc") return;
     setRestaurantArray(restaurantArray.sort(compareValues("name")));
     setReload("asc");
   };
   const sortDesc = () => {
+    if (reload === "desc") return;
     setRestaurantArray(restaurantArray.sort(compareValues("name", "desc")));
     setReload("desc");
   };
