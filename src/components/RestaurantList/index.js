@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-import CustomizedDialog from "./CustomizedDialog.jsx";
+import CustomizedDialog from "./CustomizedDialog";
 
 const useStyles = makeStyles(theme => ({
   icon: {
@@ -30,6 +30,11 @@ const useStyles = makeStyles(theme => ({
   },
   cardContent: {
     flexGrow: 1
+  },
+  emptyContent: {
+    paddingTop: theme.spacing(8),
+    paddingBottom: theme.spacing(8),
+    textAlign: "center"
   }
 }));
 
@@ -47,7 +52,7 @@ const RestaurantList = (props: Object) => {
     setOpen(false);
   };
 
-  return (
+  return restaurants !== undefined ? (
     <React.Fragment>
       <Container className={classes.cardGrid} maxWidth="md">
         <Grid container spacing={4}>
@@ -85,6 +90,15 @@ const RestaurantList = (props: Object) => {
         />
       </Container>
     </React.Fragment>
+  ) : (
+    <Container className={classes.emptyContent} maxWidth="sm">
+      <p>
+        There is no data to show{" "}
+        <span role="img" aria-label="crying">
+          &#128546;
+        </span>{" "}
+      </p>
+    </Container>
   );
 };
 

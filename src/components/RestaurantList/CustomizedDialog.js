@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -53,30 +54,28 @@ const DialogActions = withStyles(theme => ({
   }
 }))(MuiDialogActions);
 
-export default function CustomizedDialog(props) {
+// Dialog template from Material-UI
+export default function CustomizedDialog(props: any) {
+  const { restaurantInfo, handleClose, open } = props;
   return (
     <div>
       <Dialog
-        onClose={props.handleClose}
+        onClose={handleClose}
         aria-labelledby="customized-dialog-title"
-        open={props.open}
+        open={open}
       >
-        <DialogTitle id="customized-dialog-title" onClose={props.handleClose}>
-          {props.restaurantInfo.name}
+        <DialogTitle id="customized-dialog-title" onClose={handleClose}>
+          {restaurantInfo.name}
         </DialogTitle>
         <DialogContent dividers>
+          <Typography gutterBottom>{restaurantInfo.description}</Typography>
+          <Typography gutterBottom>City: {restaurantInfo.city}</Typography>
           <Typography gutterBottom>
-            {props.restaurantInfo.description}
-          </Typography>
-          <Typography gutterBottom>
-            City: {props.restaurantInfo.city}
-          </Typography>
-          <Typography gutterBottom>
-            Is accepting orders: {props.restaurantInfo.online ? "Yes" : "No"}
+            Is accepting orders: {restaurantInfo.online ? "Yes" : "No"}
           </Typography>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={props.handleClose} color="primary">
+          <Button autoFocus onClick={handleClose} color="primary">
             Close
           </Button>
         </DialogActions>
