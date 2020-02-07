@@ -58,7 +58,10 @@ const RestaurantList = (props: Object) => {
         <Grid container spacing={4}>
           {restaurants.map(card => (
             <Grid item key={card.name} xs={12} sm={6} md={4}>
-              <Card className={classes.card}>
+              <Card
+                className={classes.card}
+                onClick={() => handleClickOpen(card)}
+              >
                 <CardMedia
                   className={classes.cardMedia}
                   image={card.image}
