@@ -1,3 +1,4 @@
+// @flow
 import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
@@ -53,7 +54,8 @@ const DialogActions = withStyles(theme => ({
   }
 }))(MuiDialogActions);
 
-export default function CustomizedDialog(props) {
+// Dialog template from Material-UI
+export default function CustomizedDialog(props: any) {
   return (
     <div>
       <Dialog
