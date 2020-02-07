@@ -27,6 +27,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+// Dark mode
 const darkTheme = createMuiTheme({
   palette: {
     primary: { main: "#0093d7" },
@@ -34,6 +35,7 @@ const darkTheme = createMuiTheme({
   }
 });
 
+// Compare function to use with JS sort()
 function compareValues(key: string, order: "asc" | "desc" = "asc") {
   return function innerSort(a, b) {
     if (!a.hasOwnProperty(key) || !b.hasOwnProperty(key)) {
@@ -69,9 +71,18 @@ function App() {
   const classes = useStyles();
   const [restaurantArray, setRestaurantArray] = useState(data.restaurants);
 
-  useEffect(() => {
-    console.log("useEffect triggered");
-  }, [restaurantArray]);
+  // Because the changes in the restaurantArray does not trigger re-render,
+  // I have to add this line to manage the state changes and re-render the list
+  const [reload, setReload] = useState("unsorted");
+
+  const sortAsc = () => {
+    setRestaurantArray(restaurantArray.sort(compareValues("name")));
+    setReload("asc");
+  };
+  const sortDesc = () => {
+    setRestaurantArray(restaurantArray.sort(compareValues("name", "desc")));
+    setReload("desc");
+  };
 
   return (
     <React.Fragment>
@@ -111,11 +122,7 @@ function App() {
                     <Button
                       variant="contained"
                       color="primary"
-                      onClick={() =>
-                        setRestaurantArray(
-                          restaurantArray.sort(compareValues("name"))
-                        )
-                      }
+                      onClick={sortAsc}
                     >
                       Sort A-Z
                     </Button>
@@ -124,11 +131,7 @@ function App() {
                     <Button
                       variant="outlined"
                       color="primary"
-                      onClick={() =>
-                        setRestaurantArray(
-                          restaurantArray.sort(compareValues("name", "desc"))
-                        )
-                      }
+                      onClick={sortDesc}
                     >
                       Sort Z-A
                     </Button>
