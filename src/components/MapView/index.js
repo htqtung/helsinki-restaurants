@@ -6,7 +6,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
 import CustomizedDialog from "../RestaurantList/CustomizedDialog";
-import { API_KEY } from "../../db/API_KEY";
+import { GG_MAP_API_KEY } from "../../db/API_KEY";
 
 const useStyles = makeStyles(theme => ({
   map: {
@@ -39,19 +39,24 @@ const MapView = ({ center, zoom, restaurants }: Props) => {
     <React.Fragment>
       <Container className={classes.map} maxWidth="md">
         <GoogleMapReact
-          bootstrapURLKeys={{ key: API_KEY }} //Your Google API key here
+          bootstrapURLKeys={{ key: GG_MAP_API_KEY }} //Your Google API key here
           defaultCenter={center}
           defaultZoom={zoom}
         >
-          {restaurants.map(marker => (
-            <LocationOnIcon
-              lng={marker.location[0]}
-              lat={marker.location[1]}
-              text={marker.name}
-              color="primary"
-              onClick={() => handleClickOpen(marker)}
-            />
-          ))}
+          {restaurants.map((marker, index) => {
+            if (marker.location === null) return null;
+            else
+              return (
+                <LocationOnIcon
+                  key={index}
+                  lng={marker.location[0]}
+                  lat={marker.location[1]}
+                  text={marker.name}
+                  color="primary"
+                  onClick={() => handleClickOpen(marker)}
+                />
+              );
+          })}
         </GoogleMapReact>
         <CustomizedDialog
           open={open}
@@ -66,7 +71,7 @@ MapView.defaultProps = {
   center: {
     lat: 60.170437,
     lng: 24.941546
-  },
+  }, // Helsinki City Center
   zoom: 16
 };
 export default MapView;
