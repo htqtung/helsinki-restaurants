@@ -1,13 +1,9 @@
 // @flow
-import React, { useState } from "react";
-import GoogleMapReact from "google-map-react";
-import LocationOnIcon from "@material-ui/icons/LocationOn";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
-import Tooltip from "@material-ui/core/Tooltip";
 
-import CustomizedDialog from "../RestaurantList/CustomizedDialog";
-import { GG_MAP_API_KEY } from "../../db/API_KEY";
+import MapHOC from "../MapHOC";
 
 const useStyles = makeStyles(theme => ({
   map: {
@@ -19,65 +15,26 @@ const useStyles = makeStyles(theme => ({
 }));
 
 type Props = {
-  center?: { lat: number, lng: number },
-  zoom?: number,
   restaurants: [Object]
 };
 
-const MapView = ({ center, zoom, restaurants }: Props) => {
+const MapView = ({ restaurants }: Props) => {
   const classes = useStyles();
-  const [open, setOpen] = useState(false);
-  const [restaurantInfo, setRestaurantInfo] = useState({});
-
-  const handleClickOpen = info => {
-    setOpen(true);
-    setRestaurantInfo(info);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const key: any = process.env.REACT_APP_GOOGLE_KEY;
   return (
-    <React.Fragment>
-      <Container className={classes.map} maxWidth="md">
-        <GoogleMapReact
-          bootstrapURLKeys={{ key: GG_MAP_API_KEY }} //Your Google API key here
-          defaultCenter={center}
-          defaultZoom={zoom}
-        >
-          {restaurants.map((marker, index) => {
-            if (marker.location === null) return null;
-            else
-              return (
-                <Tooltip
-                  title={marker.name}
-                  placement="top"
-                  key={index}
-                  lng={marker.location[0]}
-                  lat={marker.location[1]}
-                >
-                  <LocationOnIcon
-                    text={marker.name}
-                    color="primary"
-                    onClick={() => handleClickOpen(marker)}
-                  />
-                </Tooltip>
-              );
-          })}
-        </GoogleMapReact>
-        <CustomizedDialog
-          open={open}
-          handleClose={handleClose}
-          restaurantInfo={restaurantInfo}
-        />
-      </Container>
-    </React.Fragment>
+    <Container className={classes.map} maxWidth="md">
+      <MapHOC
+        restaurants={restaurants}
+        googleMapURL={`https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places&key=${key}`}
+        loadingElement={<div style={{ height: `100%` }} />}
+        containerElement={<div style={{ height: `400px` }} />}
+        mapElement={<div style={{ height: `100%` }} />}
+      />
+    </Container>
   );
 };
+
 MapView.defaultProps = {
-  center: {
-    lat: 60.170437,
-    lng: 24.941546
-  }, // Helsinki City Center
-  zoom: 16
+  restaurants: []
 };
 export default MapView;
