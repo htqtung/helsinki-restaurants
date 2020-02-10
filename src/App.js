@@ -11,6 +11,7 @@ import data from "./db/restaurants.js";
 import compareValues from "./utils/compareValues";
 import HeroContent from "./components/HeroContent";
 import RestaurantList from "./components/RestaurantList";
+import MapView from "./components/MapView";
 import Footer from "./components/Footer";
 import "./App.css";
 
@@ -61,6 +62,7 @@ function App() {
             secondaryFunction={sortDesc}
           />
           <RestaurantList restaurants={restaurantArray} />
+          <MapView restaurants={restaurantArray} />
         </main>
         <Footer />
       </ThemeProvider>
