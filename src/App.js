@@ -103,7 +103,7 @@ function App() {
           <HeroContent
             title="Helsinki Restaurants"
             subtitle="Fifty restaurants in Helsinki area shown on a React web page with
-          Material UI Design."
+          Material UI Design and Google Map."
             primaryButton="Sort A-Z"
             secondaryButton="Sort Z-A"
             primaryFunction={sortAsc}
@@ -116,8 +116,10 @@ function App() {
           <HeroContent
             title="Blurhash view"
             subtitle="A fun way to view the list when your Internet connection is a bit slow."
-            sortAsc={sortAsc}
-            sortDesc={sortDesc}
+            primaryButton="Sort A-Z"
+            secondaryButton="Sort Z-A"
+            primaryFunction={sortAsc}
+            secondaryFunction={sortDesc}
           />
           <RestaurantList restaurants={restaurantArray} isBlurred={true} />
         </TabPanel>

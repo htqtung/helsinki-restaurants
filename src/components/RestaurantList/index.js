@@ -10,7 +10,7 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 
-import BlurhashCanvas from "react-blurhash/es/BlurhashCanvas.js";
+import { BlurhashCanvas } from "react-blurhash";
 
 import CustomizedDialog from "./CustomizedDialog";
 
@@ -68,14 +68,14 @@ const RestaurantList = ({ restaurants, isBlurred }: Props) => {
                 className={classes.card}
                 onClick={() => handleClickOpen(card)}
               >
-                {!isBlurred ? (
+                {isBlurred ? (
+                  <BlurhashCanvas hash={card.blurhash} height={200} />
+                ) : (
                   <CardMedia
                     className={classes.cardMedia}
                     image={card.image}
                     title={card.name}
                   />
-                ) : (
-                  <BlurhashCanvas hash={card.blurhash} height={200} />
                 )}
                 <CardContent className={classes.cardContent}>
                   <Typography gutterBottom variant="h5" component="h2">
