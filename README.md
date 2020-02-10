@@ -1,4 +1,4 @@
-See this project live on [Heroku](https://helsinki-restaurants.herokuapp.com).
+# See this project live on [Heroku](https://helsinki-restaurants.herokuapp.com).
 
 **Note: Heroku server may not be awake so it needs at most 10 sec to load the page**
 
