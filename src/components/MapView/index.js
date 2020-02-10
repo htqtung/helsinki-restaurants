@@ -4,6 +4,7 @@ import GoogleMapReact from "google-map-react";
 import LocationOnIcon from "@material-ui/icons/LocationOn";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import CustomizedDialog from "../RestaurantList/CustomizedDialog";
 import { GG_MAP_API_KEY } from "../../db/API_KEY";
@@ -47,14 +48,19 @@ const MapView = ({ center, zoom, restaurants }: Props) => {
             if (marker.location === null) return null;
             else
               return (
-                <LocationOnIcon
+                <Tooltip
+                  title={marker.name}
+                  placement="top"
                   key={index}
                   lng={marker.location[0]}
                   lat={marker.location[1]}
-                  text={marker.name}
-                  color="primary"
-                  onClick={() => handleClickOpen(marker)}
-                />
+                >
+                  <LocationOnIcon
+                    text={marker.name}
+                    color="primary"
+                    onClick={() => handleClickOpen(marker)}
+                  />
+                </Tooltip>
               );
           })}
         </GoogleMapReact>
