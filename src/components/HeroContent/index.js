@@ -15,8 +15,23 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default function HeroContent(props: any) {
-  const { sortAsc, sortDesc } = props;
+type Props = {
+  title: string,
+  subtitle: string,
+  primaryButton: string,
+  secondaryButton: string,
+  primaryFunction: () => any,
+  secondaryFunction: () => any
+};
+
+const HeroContent = ({
+  title,
+  subtitle,
+  primaryButton,
+  secondaryButton,
+  primaryFunction,
+  secondaryFunction
+}: Props) => {
   const classes = useStyles();
   return (
     <div className={classes.heroContent}>
@@ -28,22 +43,29 @@ export default function HeroContent(props: any) {
           color="textPrimary"
           gutterBottom
         >
-          Helsinki Restaurants
+          {title}
         </Typography>
         <Typography variant="h5" align="center" color="textSecondary" paragraph>
-          Fifty restaurants in Helsinki area shown on a React web page with
-          Material UI Design.
+          {subtitle}
         </Typography>
         <div className={classes.heroButtons}>
           <Grid container spacing={2} justify="center">
             <Grid item>
-              <Button variant="contained" color="primary" onClick={sortAsc}>
-                Sort A-Z
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={primaryFunction}
+              >
+                {primaryButton}
               </Button>
             </Grid>
             <Grid item>
-              <Button variant="outlined" color="primary" onClick={sortDesc}>
-                Sort Z-A
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={secondaryFunction}
+              >
+                {secondaryButton}
               </Button>
             </Grid>
           </Grid>
@@ -51,4 +73,16 @@ export default function HeroContent(props: any) {
       </Container>
     </div>
   );
-}
+};
+
+HeroContent.defaultProps = {
+  title: "Hero Title",
+  subtitle:
+    "Something short and leading about the collection below—its contents, the creator, etc. Make it short and sweet, but not too short so folks don't simply skip over it entirely.",
+  primaryButton: "Main call to action",
+  secondaryButton: "Secondary action",
+  primaryFunction: () => {},
+  secondaryFunction: () => {}
+};
+
+export default HeroContent;

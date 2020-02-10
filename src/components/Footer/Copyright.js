@@ -3,23 +3,26 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import Link from "@material-ui/core/Link";
 
-// Take in a name from props to display
-const Copyright = (props: any) => {
-  // if name is not available - use a defaultcopyright
-  return props.name !== undefined ? (
+type Props = {
+  name: string
+};
+
+// Take in a name from props to display if no name is given - use the default value
+const Copyright = ({ name }: Props) => {
+  return (
     <Typography variant="body2" color="textSecondary" align="center">
       {"Copyright © "}
       <Link color="inherit" href="https://material-ui.com/">
-        {props.name}
+        {name}
       </Link>{" "}
       {new Date().getFullYear()}
       {"."}
     </Typography>
-  ) : (
-    <Link color="inherit" href="https://material-ui.com/">
-      Copyright © A React Developer 2020.
-    </Link>
   );
+};
+
+Copyright.defaultProps = {
+  name: "A React Developer"
 };
 
 export default Copyright;

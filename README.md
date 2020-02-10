@@ -1,3 +1,7 @@
+See this project live on [Heroku](https://helsinki-restaurants.herokuapp.com).
+
+**Note: Heroku server may not be awake so it needs at most 10 sec to load the page**
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Clone the project to your computer then

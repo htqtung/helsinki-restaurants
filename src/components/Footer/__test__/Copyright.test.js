@@ -21,9 +21,7 @@ it("renders with or without a name", () => {
   act(() => {
     render(<Copyright />, container);
   });
-  expect(container.querySelector("a").textContent).toBe(
-    "Copyright © A React Developer 2020."
-  );
+  expect(container.querySelector("a").textContent).toBe("A React Developer");
 
   act(() => {
     render(<Copyright name="Jenny" />, container);
