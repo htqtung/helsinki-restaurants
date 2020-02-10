@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 
 import Copyright from "./Copyright";
 
+// Just a simple footer
 const Footer = () => {
   return (
     <React.Fragment>

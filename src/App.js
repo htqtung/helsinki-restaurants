@@ -51,7 +51,15 @@ function App() {
           </Toolbar>
         </AppBar>
         <main>
-          <HeroContent sortAsc={sortAsc} sortDesc={sortDesc} />
+          <HeroContent
+            title="Helsinki Restaurants"
+            subtitle="Fifty restaurants in Helsinki area shown on a React web page with
+          Material UI Design."
+            primaryButton="Sort A-Z"
+            secondaryButton="Sort Z-A"
+            primaryFunction={sortAsc}
+            secondaryFunction={sortDesc}
+          />
           <RestaurantList restaurants={restaurantArray} />
         </main>
         <Footer />

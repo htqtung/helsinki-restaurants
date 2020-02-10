@@ -54,9 +54,18 @@ const DialogActions = withStyles(theme => ({
   }
 }))(MuiDialogActions);
 
+type Props = {
+  restaurantInfo: Object,
+  handleClose: () => any,
+  open: boolean
+};
+
 // Dialog template from Material-UI
-export default function CustomizedDialog(props: any) {
-  const { restaurantInfo, handleClose, open } = props;
+export default function CustomizedDialog({
+  restaurantInfo,
+  handleClose,
+  open
+}: Props) {
   return (
     <div>
       <Dialog
@@ -83,3 +92,14 @@ export default function CustomizedDialog(props: any) {
     </div>
   );
 }
+
+CustomizedDialog.defaultProps = {
+  open: false,
+  handleClose: () => {},
+  restaurantInfo: {
+    name: "Title",
+    description: "Description",
+    city: "City",
+    online: "No"
+  }
+};

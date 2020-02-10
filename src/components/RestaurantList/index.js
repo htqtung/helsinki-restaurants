@@ -38,11 +38,14 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const RestaurantList = (props: Object) => {
+type Props = {
+  restaurants: Array<Object>
+};
+
+const RestaurantList = ({ restaurants }: Props) => {
   const classes = useStyles();
   const [open, setOpen] = useState(false);
   const [restaurantInfo, setRestaurantInfo] = useState({});
-  const restaurants = props.restaurants;
 
   const handleClickOpen = info => {
     setOpen(true);
@@ -103,6 +106,10 @@ const RestaurantList = (props: Object) => {
       </p>
     </Container>
   );
+};
+
+RestaurantList.defaultProps = {
+  restaurants: []
 };
 
 export default RestaurantList;

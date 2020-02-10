@@ -18,12 +18,17 @@ afterEach(() => {
 });
 
 it("renders normally", () => {
+  const fakeObject = {
+    title: "Helsinki Restaurants",
+    subtitle:
+      "Fifty restaurants in Helsinki area shown on a React web page with Material UI Design.",
+    primaryButton: "Sort A-Z",
+    secondaryButton: "Sort Z-A"
+  };
   act(() => {
-    render(<HeroContent />, container);
+    render(<HeroContent title={fakeObject.title} />, container);
   });
-  expect(container.querySelector("h1").textContent).toBe(
-    "Helsinki Restaurants"
-  );
+  expect(container.querySelector("h1").textContent).toBe(fakeObject.title);
 
   expect(container.querySelector("p").textContent).toBeDefined();
 });
