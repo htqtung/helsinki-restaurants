@@ -8,6 +8,8 @@ Clone the project to your computer then
 
 ### `yarn install`
 
+Node v13.8.0
+
 after that
 
 ### `yarn start`
