@@ -1,14 +1,27 @@
-# See this project live on [Heroku](https://helsinki-restaurants.herokuapp.com).
+# See this project live on Heroku [click here](https://helsinki-restaurants.herokuapp.com).
 
 **Note: Heroku server may not be awake so it needs at most 10 sec to load the page**
+
+---
+
+### Prerequisites 📋
+
+You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer.\
+
+```
+node@v13.8.0 or higher
+npm@6.9.0 or higher
+git@2.25.0 or higher
+yarn@1.22.0 or higher
+```
+
+---
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Clone the project to your computer then
 
 ### `yarn install`
-
-Node v13.8.0
 
 after that
 
