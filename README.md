@@ -4,7 +4,7 @@
 
 ---
 
-### Prerequisites 📋
+### Running locally 📋
 
 You'll need [Git](https://git-scm.com) and [Node.js](https://nodejs.org/en/download/) (which comes with [npm](http://npmjs.com)) installed on your computer.\
 
@@ -14,6 +14,8 @@ npm@6.9.0 or higher
 git@2.25.0 or higher
 yarn@1.22.0 or higher
 ```
+For the Google Map component to work you will need your own [Google Cloud Platform](https://cloud.google.com) Javascript API key. ([tutorial here](https://developers.google.com/maps/documentation/javascript/tutorial))  
+Copy and paste the key to **env.local-sample** and rename the file to **env.local** for the map to work.
 
 ---
 
